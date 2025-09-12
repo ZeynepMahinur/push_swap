@@ -25,3 +25,18 @@ void    pa(t_stack **stack_a, t_stack **stack_b)
     *stack_a = tmp;
     ft_printf("pa\n");
 }
+
+void    ra(t_stack **stack_a)
+{
+    t_stack *tmp;
+    t_stack *first;
+
+    if (!*stack_a || !(*stack_a)->next_node)
+        return ;
+    first = *stack_a;
+    *stack_a = (*stack_a)->next_node;
+    tmp = stack_last(*stack_a);
+    tmp->next_node = first;
+    first->next_node = NULL;
+    ft_printf("ra\n");
+}

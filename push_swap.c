@@ -54,5 +54,14 @@ int main(int argc, char *argv[])
         tmp = tmp->next_node;
     }
     ft_printf("\n");
+    ra(&stack_a);
+    ft_printf("after ra stack_a\n");
+    tmp = stack_a;
+    while (tmp)
+    {
+        ft_printf("%d ", tmp->number);
+        tmp = tmp->next_node;
+    }
+    ft_printf("\n");
     return (0);
 }

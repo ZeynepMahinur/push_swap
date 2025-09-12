@@ -20,5 +20,7 @@ void    stack_clear(t_stack **stack);
 void    pb(t_stack **stack_a, t_stack **stack_b);
 void    fill_a(t_stack **stack_a, int argc, char *argv[]);
 void    pa(t_stack **stack_a, t_stack **stack_b);
+void    ra(t_stack **stack_a);
+
 
 #endif
