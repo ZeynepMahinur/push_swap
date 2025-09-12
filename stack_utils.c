@@ -7,7 +7,7 @@ t_stack *stack_new(int value)
     node = malloc(sizeof(t_stack));
     if (!node)
         return (NULL);
-    node->number = number;
+    node->number = value;
     node->index = -1; 
     node->next_node = NULL;
     return (node);
