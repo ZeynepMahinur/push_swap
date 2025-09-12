@@ -37,5 +37,22 @@ int main(int argc, char *argv[])
         tmp = tmp->next_node;
     }
     ft_printf("\n");
+    pa(&stack_a, &stack_b);
+    ft_printf("after pa stack_b:\n");
+    tmp = stack_b;
+    while (tmp)
+    {
+        ft_printf("%d ", tmp->number);
+        tmp = tmp->next_node;
+    }
+    ft_printf("\n");
+    ft_printf("after pa stack_a:\n");
+    tmp = stack_a;
+    while (tmp)
+    {
+        ft_printf("%d ", tmp->number);
+        tmp = tmp->next_node;
+    }
+    ft_printf("\n");
     return (0);
 }
