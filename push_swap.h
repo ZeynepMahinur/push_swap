@@ -21,6 +21,6 @@ void    pb(t_stack **stack_a, t_stack **stack_b);
 void    fill_a(t_stack **stack_a, int argc, char *argv[]);
 void    pa(t_stack **stack_a, t_stack **stack_b);
 void    ra(t_stack **stack_a);
-
+void    index_stack(t_stack *stack);
 
 #endif

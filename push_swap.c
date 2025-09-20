@@ -19,6 +19,13 @@ int main(int argc, char *argv[])
         tmp = tmp->next_node;
     }
     ft_printf("\n");
+    index_stack(stack_a);
+    tmp = stack_a;
+    while (tmp)
+    {
+        ft_printf("num: %d\n | index: %d\n", tmp->number, tmp->index);
+        tmp = tmp->next_node;
+    }
     pb(&stack_a, &stack_b);
     pb(&stack_a, &stack_b);
     ft_printf("after pb stack_a:\n");
