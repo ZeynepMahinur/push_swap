@@ -29,6 +29,7 @@ void    stack_add_back(t_stack **stack, t_stack *new)
         last = last->next_node;
     last->next_node = new;
 }
+
 void    stack_add_front(t_stack **stack, t_stack *new)
 {
     if (!stack || !new)

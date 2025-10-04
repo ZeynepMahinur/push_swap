@@ -6,7 +6,7 @@ void    stack_clear(t_stack **stack)
 
     while (*stack)
     {
-        tmp = (*stack)->next;
+        tmp = (*stack)->next_node;
         free(*stack);
         *stack = tmp;
     }

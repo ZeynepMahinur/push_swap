@@ -11,6 +11,15 @@ typedef struct s_stack
     struct s_stack *next_node;
 }              t_stack;
 
+typedef struct s_param
+{
+    int max_i;
+    int max_bit;
+    int bit;
+    int i;
+    int len;
+}              t_param;
+
 t_stack *stack_new(int value);
 void    stack_add_back(t_stack **stack, t_stack *new);
 void    stack_add_front(t_stack **stack, t_stack *new);

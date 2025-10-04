@@ -18,32 +18,27 @@ static int    max_index(t_stack *stack)
 
 void    radix_sort(t_stack **a, t_stack **b)
 {
-    int max_i;
-    int max_bit;
-    int bit;
-    int i;
-    int len;
-    int j;
+    t_param p;
 
-    bit = 0;
-    max_i = max_index(*a);
-    max_bit = 0;
-    while ((max_i >> max_bit) != 0)
-        max_bit++;
-    while (bit < max_bit)
+    p.bit = 0;
+    p.max_i = max_index(*a);
+    p.max_bit = 0;
+    while ((p.max_i >> p.max_bit) != 0)
+        p.max_bit++;
+    while (p.bit < p.max_bit)
     {
-        i = 0;
-        len = stack_size(*a);
-        while (i < len)
+        p.i = 0;
+        p.len = stack_size(*a);
+        while (p.i < p.len)
         {
-            if ((((*a)->index >> bit) & 1) == 0)
+            if ((((*a)->index >> p.bit) & 1) == 0)
                 pb(a, b);
             else
                 ra(a);
-            i++;
+            p.i++;
         }
         while (*b)
             pa(a, b);
-        bit++;
+        p.bit++;
     }
 }
