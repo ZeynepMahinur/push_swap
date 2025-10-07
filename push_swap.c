@@ -42,6 +42,17 @@ void	check_args(int argc, char *argv[], t_stack **stack_a)
 		fill_a(stack_a, argc, argv);
 }
 
+static int	is_sorted(t_stack *stack)
+{
+	while (stack && stack->next_node)
+	{
+		if (stack->number > stack->next_node->number)
+			return (0);
+		stack = stack->next_node;
+	}
+	return (1);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_stack	*stack_a;
@@ -53,7 +64,8 @@ int	main(int argc, char *argv[])
 		return (0);
 	check_args(argc, argv, &stack_a);
 	index_stack(stack_a);
-	radix_sort(&stack_a, &stack_b);
+	if (!is_sorted(stack_a))
+		radix_sort(&stack_a, &stack_b);
 	stack_clear(&stack_a);
 	stack_clear(&stack_b);
 	return (0);
