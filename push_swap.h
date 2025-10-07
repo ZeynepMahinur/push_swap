@@ -44,5 +44,7 @@ void	pa(t_stack **stack_a, t_stack **stack_b);
 void	ra(t_stack **stack_a);
 void	index_stack(t_stack *stack);
 void	radix_sort(t_stack **a, t_stack **b);
+int		is_duplicate(char **args, int size);
+int		ft_atoi_safe(char *str, int *out);
 
 #endif

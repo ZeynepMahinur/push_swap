@@ -12,20 +12,40 @@
 
 #include "push_swap.h"
 
+static void free_split(char **arr)
+{
+	int i;
+
+	i = 0;
+	while (arr[i])
+		free(arr[i++]);
+	free(arr);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	t_stack	*tmp;
+	char	**split_args;
+	int		i;
 
 	stack_a = NULL;
 	stack_b = NULL;
 	if (argc < 2)
 		return (0);
-	fill_a(&stack_a, argc, argv);
-	tmp = stack_a;
-	while (tmp)
-		tmp = tmp->next_node;
+	if (argc == 2)
+	{
+		split_args = ft_split(argv[1], ' ');
+		if (!split_args)
+			return (1);
+		i = 0;
+		while(split_args[i])
+			i++;
+		fill_a(&stack_a, i + 1, split_args - 1);
+		free_split(split_args);
+	}
+	else
+		fill_a(&stack_a, argc, argv);
 	index_stack(stack_a);
 	radix_sort(&stack_a, &stack_b);
 	stack_clear(&stack_a);

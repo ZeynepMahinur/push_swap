@@ -6,87 +6,46 @@
 /*   By: zarikan <zarikan@student.42istanbul.com.t  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:29:01 by zarikan           #+#    #+#             */
-/*   Updated: 2025/10/06 15:30:03 by zarikan          ###   ########.fr       */
+/*   Updated: 2025/10/07 17:57:11 by zarikan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ft_isspace_safe(char c)
+static void	dup_check(t_stack **stack_a, char **argv)
 {
-	if (c == 32 || (c >= 9 && c <= 13))
-		return (1);
-	return (0);
-}
-
-static int	ft_isdigit_safe(char c)
-{
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
-}
-
-static int ft_sign_safe(char *str, int *sign)
-{
-	int i;
+	int		size;
 	
-	i = 0;
-	*sign = 1;
-	if (str[i] == '+' || str[i] == '-')
+	size = stack_size(*stack_a);
+	if (is_duplicate(argv + 1, size))
 	{
-		if (sign[i] == '-')
-			*sign = -1;
-		i++;
+		stack_clear(stack_a);
+		write (2, "Error\n", 6);
+		exit(1);	
 	}
-	return (i);
 }
 
-static int	ft_atoi_safe(char *str, int *out)
-{
-	int	i;
-	long	res;
-	int	s;
 
-	i = 0;
-	res = 0;
-	s = 1;
-	while (ft_isspace_safe(str[i]))
-		i++;
-	i += ft_sign_safe(&str[i], &s);
-	if (!ft_isdigit_safe(str[i]))
-		return (0);
-	while (ft_isdigit_safe(str[i]))
+void	fill_a(t_stack **stack_a, int argc, char *argv[])
+{
+	int		i;
+	int		number;
+	t_stack	*new_node;
+	
+	i = 1;
+	while (i < argc)
 	{
-		res = (res * 10) + (str[i] - '0');
-		if ((s == 1 && res > 2147483647) || (s == -1 && -res < -2147483648))
-			return (0);
+		if (!ft_atoi_safe(argv[i], &number))
+		{
+			stack_clear(stack_a);
+			write (2, "Error\n", 6);
+			exit(1);
+		}
+		new_node = stack_new(number);
+		if (!new_node)
+			exit(1);
+		stack_add_back(stack_a, new_node);
 		i++;
 	}
-	if (str[i] != '\0')
-		return (0);
-	*out = (int)(res * s);
-	return (1);
-}
-
-void    fill_a(t_stack **stack_a, int argc, char *argv[])
-{
-    int     i;
-    int     number;
-    t_stack *new_node;
-
-    i = 1;
-    while (i < argc)
-    {
-        if (!ft_atoi_safe(argv[i], &number))
-        {
-            stack_clear(stack_a);
-            write (2, "Error\n", 6);
-            exit(1);
-        }
-        new_node = stack_new(number);
-        if (!new_node)
-            exit(1);
-        stack_add_back(stack_a, new_node);
-        i++;
-    }
+	dup_check(stack_a, argv);
 }

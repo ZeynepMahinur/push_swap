@@ -6,7 +6,7 @@
 /*   By: zarikan <zarikan@student.42istanbul.com.t  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:49:26 by zarikan           #+#    #+#             */
-/*   Updated: 2025/10/06 15:49:27 by zarikan          ###   ########.fr       */
+/*   Updated: 2025/10/07 17:59:00 by zarikan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_stack	*stack_new(int value)
 	if (!node)
 		return (NULL);
 	node->number = value;
-	node->index = -1; 
+	node->index = -1;
 	node->next_node = NULL;
 	return (node);
 }
@@ -30,11 +30,11 @@ void	stack_add_back(t_stack **stack, t_stack *new)
 	t_stack	*last;
 
 	if (!stack || !new)
-		return;
+		return ;
 	if (!*stack)
 	{
 		*stack = new;
-		return;
+		return ;
 	}
 	last = *stack;
 	while (last->next_node)
@@ -45,7 +45,7 @@ void	stack_add_back(t_stack **stack, t_stack *new)
 void	stack_add_front(t_stack **stack, t_stack *new)
 {
 	if (!stack || !new)
-		return;
+		return ;
 	new->next_node = *stack;
 	*stack = new;
 }
@@ -59,12 +59,12 @@ t_stack	*stack_last(t_stack *stack)
 	return (stack);
 }
 
-
 int	stack_size(t_stack *stack)
 {
-	int	i = 0;
+	int	i;
 
-	while (stack)
+	i = 0;
+	while (stack != NULL)
 	{
 		stack = stack->next_node;
 		i++;
