@@ -22,30 +22,36 @@ static void free_split(char **arr)
 	free(arr);
 }
 
+void	check_args(int argc, char *argv[], t_stack **stack_a)
+{
+	char **split_args;
+	int i;
+
+	if (argc == 2)
+	{
+		split_args = ft_split(argv[1], ' ');
+		if (!split_args)
+			exit (1);
+		i = 0;
+		while(split_args[i])
+			i++;
+		fill_a(stack_a, i + 1, split_args - 1);
+		free_split(split_args);
+	}
+	else
+		fill_a(stack_a, argc, argv);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	char	**split_args;
-	int		i;
 
 	stack_a = NULL;
 	stack_b = NULL;
 	if (argc < 2)
 		return (0);
-	if (argc == 2)
-	{
-		split_args = ft_split(argv[1], ' ');
-		if (!split_args)
-			return (1);
-		i = 0;
-		while(split_args[i])
-			i++;
-		fill_a(&stack_a, i + 1, split_args - 1);
-		free_split(split_args);
-	}
-	else
-		fill_a(&stack_a, argc, argv);
+	check_args(argc, argv, &stack_a);
 	index_stack(stack_a);
 	radix_sort(&stack_a, &stack_b);
 	stack_clear(&stack_a);
