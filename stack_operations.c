@@ -12,6 +12,22 @@
 
 #include "push_swap.h"
 
+void	sa(t_stack **a)
+{
+	t_stack *first;
+	t_stack *second;
+	int tmp;
+
+	if (!a || !*a || !(*a)->next_node)
+		return ;
+	first = *a;
+	second = (*a)->next_node;
+	tmp = first->number;
+	first->number = second->number;
+	second->number = tmp;
+	ft_printf("sa\n");
+}
+
 void	pb(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*tmp;

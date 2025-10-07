@@ -2,11 +2,11 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -g -I.
 
-LIBFT = ../push_swap_folder/libft/libft.a
-PRINTF = ../push_swap_folder/printf/libftprintf.a
+LIBFT = ./libft/libft.a
+PRINTF = ./printf/libftprintf.a
 
-SRCS =	fill_a.c free_stack_utils.c index.c push_swap.c is_duplicate.c \
-		radix_sort.c stack_operations.c stack_utils.c ft_atoi_safe.c
+SRCS = fill_a.c free_stack_utils.c index.c push_swap.c radix_sort.c stack_operations.c stack_utils.c \
+ft_atoi_safe.c is_duplicate.c small_stack_sort.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -15,23 +15,23 @@ NAME = push_swap
 all: $(NAME)
 
 $(LIBFT):
-	make -C ../push_swap_folder/libft
+	make -C ./libft
 
 $(PRINTF):
-	make -C ../push_swap_folder/printf
+	make -C ./printf
 
 $(NAME): $(OBJS) $(LIBFT) $(PRINTF)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L../push_swap_folder/libft -lft -L../push_swap_folder/printf -lftprintf
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L./libft -lft -L./printf -lftprintf
 
 clean:
 	rm -f $(OBJS)
-	make -C ../push_swap_folder/libft clean
-	make -C ../push_swap_folder/printf clean
+	make -C ./libft clean
+	make -C ./printf clean
 
 fclean: clean
 	rm -f $(NAME)
-	make -C ../push_swap_folder/libft fclean
-	make -C ../push_swap_folder/printf fclean
+	make -C ./libft fclean
+	make -C ./printf fclean
 
 re: fclean all
 
