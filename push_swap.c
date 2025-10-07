@@ -6,15 +6,15 @@
 /*   By: zarikan <zarikan@student.42istanbul.com.t  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:24:30 by zarikan           #+#    #+#             */
-/*   Updated: 2025/10/06 15:26:53 by zarikan          ###   ########.fr       */
+/*   Updated: 2025/10/07 20:31:29 by zarikan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void free_split(char **arr)
+static void	free_split(char **arr)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (arr[i])
@@ -24,8 +24,8 @@ static void free_split(char **arr)
 
 void	check_args(int argc, char *argv[], t_stack **stack_a)
 {
-	char **split_args;
-	int i;
+	char	**split_args;
+	int		i;
 
 	if (argc == 2)
 	{
@@ -33,7 +33,7 @@ void	check_args(int argc, char *argv[], t_stack **stack_a)
 		if (!split_args)
 			exit (1);
 		i = 0;
-		while(split_args[i])
+		while (split_args[i])
 			i++;
 		fill_a(stack_a, i + 1, split_args - 1);
 		free_split(split_args);
