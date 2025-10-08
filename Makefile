@@ -6,7 +6,7 @@ LIBFT = ./libft/libft.a
 PRINTF = ./printf/libftprintf.a
 
 SRCS = fill_a.c free_stack_utils.c index.c push_swap.c radix_sort.c stack_operations.c stack_utils.c \
-ft_atoi_safe.c is_duplicate.c small_stack_sort.c
+ft_atoi_safe.c is_duplicate.c small_stack_sort.c find_min_i.c sort_5.c
 
 OBJS = $(SRCS:.c=.o)
 

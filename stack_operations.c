@@ -14,9 +14,9 @@
 
 void	sa(t_stack **a)
 {
-	t_stack *first;
-	t_stack *second;
-	int tmp;
+	t_stack	*first;
+	t_stack	*second;
+	int		tmp;
 
 	if (!a || !*a || !(*a)->next_node)
 		return ;
@@ -32,7 +32,7 @@ void	pb(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*tmp;
 
-	if (!stack_a || !stack_b)
+	if (!stack_a || !*stack_a)
 		return ;
 	tmp = *stack_a;
 	*stack_a = (*stack_a)->next_node;
@@ -45,7 +45,7 @@ void	pa(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*tmp;
 
-	if (!stack_a || !stack_b)
+	if (!stack_b || !*stack_b)
 		return ;
 	tmp = *stack_b;
 	*stack_b = (*stack_b)->next_node;
@@ -59,12 +59,13 @@ void	ra(t_stack **stack_a)
 	t_stack	*tmp;
 	t_stack	*first;
 
-	if (!*stack_a || !(*stack_a)->next_node)
+	if (!*stack_a || !*stack_a || !(*stack_a)->next_node)
 		return ;
 	first = *stack_a;
 	*stack_a = (*stack_a)->next_node;
 	tmp = stack_last(*stack_a);
-	tmp->next_node = first;
+	if (tmp)
+		tmp->next_node = first;
 	first->next_node = NULL;
 	ft_printf("ra\n");
 }

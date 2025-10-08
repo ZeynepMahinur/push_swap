@@ -46,7 +46,10 @@ void	index_stack(t_stack *stack);
 void	radix_sort(t_stack **a, t_stack **b);
 int		is_duplicate(char **args, int size);
 int		ft_atoi_safe(char *str, int *out);
-void	small_stack_sort(t_stack **a);
+void	small_stack_sort(t_stack **a, t_stack **b);
 void	sa(t_stack **stack_a);
+int		find_min_i(t_stack *a);
+void	sort_5(t_stack **a, t_stack **b);
+void    sort_3(t_stack **a);
 
 #endif

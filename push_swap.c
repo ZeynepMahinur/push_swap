@@ -66,7 +66,7 @@ int	main(int argc, char *argv[])
 	index_stack(stack_a);
 	if (!is_sorted(stack_a))
 	{
-		if (stack_size(stack_a) <= 3)
+		if (stack_size(stack_a) <= 5)
 			small_stack_sort(&stack_a, &stack_b);
 		else
 			radix_sort(&stack_a, &stack_b);
