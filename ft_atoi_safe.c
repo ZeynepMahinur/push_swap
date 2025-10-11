@@ -34,7 +34,7 @@ static int	ft_sign_safe(char *str, int *sign)
 	*sign = 1;
 	if (str[i] == '+' || str[i] == '-')
 	{
-		if (sign[i] == '-')
+		if (str[i] == '-')
 			*sign = -1;
 		i++;
 	}
