@@ -22,6 +22,15 @@ static void	free_split(char **arr)
 	free(arr);
 }
 
+static void	check_split(char **arr)
+{
+	if (!arr[0])
+	{
+		write (2, "Error\n", 7);
+		exit (1);
+	}
+}
+
 void	check_args(int argc, char *argv[], t_stack **stack_a)
 {
 	char	**split_args;
@@ -30,16 +39,22 @@ void	check_args(int argc, char *argv[], t_stack **stack_a)
 	if (argc == 2)
 	{
 		split_args = ft_split(argv[1], ' ');
-		if (!split_args)
-			exit (1);
+		check_split(split_args);
 		i = 0;
 		while (split_args[i])
 			i++;
-		fill_a(stack_a, i + 1, split_args - 1);
+		if (!fill_a(stack_a, i + 1, split_args - 1))
+		{
+			free_split(split_args);
+			exit(1);
+		}
 		free_split(split_args);
 	}
 	else
-		fill_a(stack_a, argc, argv);
+	{
+		if (!fill_a(stack_a, argc, argv))
+			exit(1);
+	}
 }
 
 static int	is_sorted(t_stack *stack)

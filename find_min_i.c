@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   find_min_i.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zarikan <zarikan@student.42istanbul.com.t  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/11 14:15:28 by zarikan           #+#    #+#             */
+/*   Updated: 2025/10/11 14:15:29 by zarikan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int find_min_i(t_stack *a)
+int	find_min_i(t_stack *a)
 {
-	int	min;
-	int	i;
-	int index;
-	t_stack *tmp;
+	int		min;
+	int		i;
+	int		index;
+	t_stack	*tmp;
 
 	min = a->number;
 	i = 0;

@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static void	dup_check(t_stack **stack_a, char **argv)
+static int	dup_check(t_stack **stack_a, char **argv)
 {
 	int	size;
 
@@ -21,11 +21,12 @@ static void	dup_check(t_stack **stack_a, char **argv)
 	{
 		stack_clear(stack_a);
 		write (2, "Error\n", 6);
-		exit(1);
+		return (0);
 	}
+	return (1);
 }
 
-void	fill_a(t_stack **stack_a, int argc, char *argv[])
+int	fill_a(t_stack **stack_a, int argc, char *argv[])
 {
 	int		i;
 	int		number;
@@ -38,13 +39,13 @@ void	fill_a(t_stack **stack_a, int argc, char *argv[])
 		{
 			stack_clear(stack_a);
 			write (2, "Error\n", 6);
-			exit(1);
+			return (0);
 		}
 		new_node = stack_new(number);
 		if (!new_node)
-			exit(1);
+			return (0);
 		stack_add_back(stack_a, new_node);
 		i++;
 	}
-	dup_check(stack_a, argv);
+	return (dup_check(stack_a, argv));
 }

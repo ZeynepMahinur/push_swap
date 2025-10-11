@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   small_stack_sort.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zarikan <zarikan@student.42istanbul.com.t  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/11 14:14:01 by zarikan           #+#    #+#             */
+/*   Updated: 2025/10/11 14:14:02 by zarikan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static void	sort_3_cont(t_stack **a)
 {
-	int one;
-	int two;
-	int three;
+	int	one;
+	int	two;
+	int	three;
 
 	if (!(*a) || !(*a)->next_node || !(*a)->next_node->next_node)
-		return;
+		return ;
 	one = (*a)->number;
 	two = (*a)->next_node->number;
 	three = (*a)->next_node->next_node->number;
@@ -25,14 +37,14 @@ static void	sort_3_cont(t_stack **a)
 	}
 }
 
-static void sort_3_cont_2(t_stack **a)
+static void	sort_3_cont_2(t_stack **a)
 {
-	int one;
-	int two;
-	int three;
+	int	one;
+	int	two;
+	int	three;
 
 	if (!(*a) || !(*a)->next_node || !(*a)->next_node->next_node)
-		return;
+		return ;
 	one = (*a)->number;
 	two = (*a)->next_node->number;
 	three = (*a)->next_node->next_node->number;
@@ -46,11 +58,11 @@ static void sort_3_cont_2(t_stack **a)
 	}
 }
 
-void    sort_3(t_stack **a)
+void	sort_3(t_stack **a)
 {
-	int one;
-	int two;
-	int three;
+	int	one;
+	int	two;
+	int	three;
 	int	size;
 
 	size = stack_size(*a);
@@ -63,7 +75,7 @@ void    sort_3(t_stack **a)
 		return ;
 	}
 	if (!(*a) || !(*a)->next_node || !(*a)->next_node->number)
-		return;
+		return ;
 	one = (*a)->number;
 	two = (*a)->next_node->number;
 	three = (*a)->next_node->next_node->number;
@@ -73,18 +85,18 @@ void    sort_3(t_stack **a)
 	sort_3_cont(a);
 }
 
-void small_stack_sort(t_stack **a, t_stack **b)
+void	small_stack_sort(t_stack **a, t_stack **b)
 {
-    int size;
+	int	size;
 
-    size = stack_size(*a);
-    if (size == 2)
-    {
-        if ((*a) && (*a)->next_node && (*a)->number > (*a)->next_node->number)
-            sa(a);
-    }
-    else if (size == 3)
-        sort_3(a);
-    else if (size <= 5)
+	size = stack_size(*a);
+	if (size == 2)
+	{
+		if ((*a) && (*a)->next_node && (*a)->number > (*a)->next_node->number)
+			sa(a);
+	}
+	else if (size == 3)
+		sort_3(a);
+	else if (size <= 5)
 		sort_5(a, b);
 }
