@@ -5,7 +5,7 @@ static void rb(t_stack **stack_b)
 	t_stack	*tmp;
 	t_stack	*first;
 
-	if (!*stack_b || !*stack_b || !(*stack_b)->next_node)
+	if (!*stack_b || !(*stack_b)->next_node)
 		return ;
 	first = *stack_b;
 	*stack_b = (*stack_b)->next_node;
@@ -40,7 +40,7 @@ void    chunk_sort(t_stack **stack_a, t_stack **stack_b)
             sort_3(stack_a);
             break;
         }
-        if ((*stack_a)->index >= size - max)
+        if ((*stack_a)->index < max)
         {
             pb(stack_a, stack_b);
             if ((*stack_b)->index < max - (chunk_size / 2))
