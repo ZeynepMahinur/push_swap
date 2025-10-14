@@ -40,7 +40,7 @@ void    chunk_sort(t_stack **stack_a, t_stack **stack_b)
             sort_3(stack_a);
             break;
         }
-        if ((*stack_a)->index < max)
+        if ((*stack_a)->index >= size - max)
         {
             pb(stack_a, stack_b);
             if ((*stack_b)->index < max - (chunk_size / 2))
@@ -53,7 +53,7 @@ void    chunk_sort(t_stack **stack_a, t_stack **stack_b)
     }
     while (*stack_b)
     {
-        if ((*stack_b)->index != max_index(*stack_b))
+        while ((*stack_b)->index != max_index(*stack_b))
             rb(stack_b);
         pa(stack_a, stack_b);
     }
