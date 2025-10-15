@@ -85,18 +85,3 @@ void	sort_3(t_stack **a)
 	sort_3_cont(a);
 }
 
-void	small_stack_sort(t_stack **a, t_stack **b)
-{
-	int	size;
-
-	size = stack_size(*a);
-	if (size == 2)
-	{
-		if ((*a) && (*a)->next_node && (*a)->number > (*a)->next_node->number)
-			sa(a);
-	}
-	else if (size == 3)
-		sort_3(a);
-	else if (size <= 5)
-		sort_5(a, b);
-}

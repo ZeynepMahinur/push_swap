@@ -1,62 +1,88 @@
 #include "push_swap.h"
 
-static void rb(t_stack **stack_b)
+static int i_of_max_i(t_stack *stack)
 {
-	t_stack	*tmp;
-	t_stack	*first;
+    int max_i;
+    int max_num;
+    int i;
 
-	if (!*stack_b || !(*stack_b)->next_node)
-		return ;
-	first = *stack_b;
-	*stack_b = (*stack_b)->next_node;
-	tmp = stack_last(*stack_b);
-	if (tmp)
-		tmp->next_node = first;
-	first->next_node = NULL;
-	ft_printf("rb\n");
+    max_num = stack->index;
+    max_i = 0;
+    i = 0;
+    while (stack)
+    {
+        if (stack->index > max_num)
+        {
+            max_num = stack->index;
+            max_i = i;
+        }
+        stack = stack->next_node;
+        i++;
+    }
+    return (max_i);
 }
 
-void    chunk_sort(t_stack **stack_a, t_stack **stack_b)
+static void push_b(t_stack **a, t_stack **b, int chunk_size, int size)
 {
-    int size;
-    int max;
-    int chunk_size;
-    int chunk_count;
+    int limit;
 
-    index_stack(*stack_a);
-    size = stack_size(*stack_a);
-    if (size <= 5)
-        chunk_count = 1;
-    else if (size <= 10)
-        chunk_count = 2;
-    else
-        chunk_count = 6;
-    chunk_size = size / chunk_count;
-    max = chunk_size;
-    while (*stack_a)
+    limit = chunk_size;
+    while (*a)
     {
-        if (size <= 5 && stack_size(*stack_a) <= 3)
+        if ((*a)->index < limit)
         {
-            sort_3(stack_a);
-            break;
-        }
-        if ((*stack_a)->index < max)
-        {
-            pb(stack_a, stack_b);
-            if ((*stack_b)->index < max - (chunk_size / 2))
-                rb(stack_b);
+            pb(a, b);
+            if ((*b)->index < limit - (chunk_size / 2))
+                rb(b);
         }
         else
-            ra(stack_a);
-        if (stack_size(*stack_b) >= max)
-            max += chunk_size;
+            ra(a);
+        if (stack_size(*b) >= limit && limit < size)
+        {
+            limit += chunk_size;
+            if (limit > size)
+                limit = size;
+        }
     }
-    while (*stack_b)
-    {
-        while ((*stack_b)->index != max_index(*stack_b))
-            rb(stack_b);
-        pa(stack_a, stack_b);
-    }
-    if ((*stack_a)->next_node && (*stack_a)->number > (*stack_a)->next_node->number)
-        sa(stack_a);
 }
+
+static void push_a(t_stack **a, t_stack **b)
+{
+    int max_num;
+    int pos;
+
+    while (*b)
+    {
+        max_num = max_index(*b);
+        pos = i_of_max_i(*b);
+        if ((*b)->index == max_num)
+            pa(a, b);
+        else if (pos <= stack_size(*b) / 2)
+            rb(b);
+        else
+            rrb(b);
+    }
+}
+
+void chunk_sort(t_stack **a, t_stack **b)
+{
+    int size;
+    int chunk_size;
+
+    size = stack_size(*a);
+    if (size <= 5)
+    {
+        if (size == 2 && (*a)->number > (*a)->next_node->number)
+            sa(a);
+        else if (size == 3)
+            sort_3(a);
+        else
+            sort_5(a, b);
+        return ;
+    }
+    if (size <= 50)
+        chunk_size = 6;
+    push_b(a, b, chunk_size, size);
+    push_a(a, b);
+}
+

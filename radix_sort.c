@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static int	max_index(t_stack *stack)
+int	max_index(t_stack *stack)
 {
 	int		max_i;
 	t_stack	*tmp;
