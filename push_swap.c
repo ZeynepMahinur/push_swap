@@ -31,7 +31,7 @@ static void	check_split(char **arr)
 	}
 }
 
-void	check_args(int argc, char *argv[], t_stack **stack_a)
+static void	check_args(int argc, char *argv[], t_stack **stack_a)
 {
 	char	**split_args;
 	int		i;
