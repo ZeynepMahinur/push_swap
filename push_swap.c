@@ -27,6 +27,7 @@ static void	check_split(char **arr)
 	if (!arr[0])
 	{
 		write (2, "Error\n", 7);
+		free (arr);
 		exit (1);
 	}
 }
@@ -81,18 +82,11 @@ int	main(int argc, char *argv[])
 	index_stack(stack_a);
 	if (!is_sorted(stack_a))
 	{
-		if (stack_size(stack_a) <= 50)
+		if (stack_size(stack_a) <= 100)
 			chunk_sort(&stack_a, &stack_b);
 		else
 			radix_sort(&stack_a, &stack_b);
 	}
-	/*ft_printf("After radix_sort stack_a:\n");
-    t_stack *tmp = stack_a;
-    while (tmp)
-    {
-        ft_printf("%d ", tmp->number);
-        tmp = tmp->next_node;
-    }*/
 	stack_clear(&stack_a);
 	stack_clear(&stack_b);
 	return (0);

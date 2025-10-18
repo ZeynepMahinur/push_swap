@@ -84,4 +84,3 @@ void	sort_3(t_stack **a)
 	sort_3_cont_2(a);
 	sort_3_cont(a);
 }
-
